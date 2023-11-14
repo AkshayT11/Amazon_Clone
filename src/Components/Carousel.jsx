@@ -18,23 +18,23 @@ const Carousel = () => {
         }}
         className='h-[50%]' >
             <SwiperSlide>
-            <img src={"/src/images/carousel_1.jpg"} alt="car1" />
+            <img src={"../images/carousel_1.jpg"} alt="car1" />
             </SwiperSlide>
             <SwiperSlide>
-            <img src={"/src/images/carousel_2.jpg"} alt="car2" />
+            <img src={"../images/carousel_2.jpg"} alt="car2" />
             </SwiperSlide>
 
             <SwiperSlide className='bg-black'>
                 <video controls >
-                    <source src={"/src/images/carousel_vid.mp4"} type= "video/mp4" />
+                    <source src={"../images/carousel_vid.mp4"} type= "video/mp4" />
                 </video>
             </SwiperSlide>
 
             <SwiperSlide>
-            <img src={"/src/images/carousel_4.jpg"} alt="car2" />
+            <img src={"../images/carousel_4.jpg"} alt="car2" />
             </SwiperSlide>
             <SwiperSlide>
-            <img src={"/src/images/carousel_5.jpg"} alt="car2" />
+            <img src={"../images/carousel_5.jpg"} alt="car2" />
             </SwiperSlide>
 
            
