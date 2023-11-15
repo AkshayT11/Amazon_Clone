@@ -1,21 +1,31 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { CallApi } from "../utils/CallApi";
 import ProductDetails from "./ProductDetails";
 import { GB_CURRENCY } from "../utils/constants";
-
+import { useDispatch } from "react-redux";
+import { addToCart } from "../redux/CartSlice";
 
 
 const ProductPage = () => {
   const { id } = useParams();
 
   const [product, setProduct] = useState(null);
+  const [quantity, setQuantity] = useState("1");
+  const dispatch = useDispatch()
+  
 
   const getProduct = () => {
     CallApi(`data/products.json`).then((productResults) => {
       setProduct(productResults[id]);
     });
   };
+
+  // To add Quantity 
+  const addQuantityToProduct = ()=> {
+    setProduct(product.quantity = quantity );
+    return product;
+  }
 
   useEffect(() => {
     getProduct();
@@ -51,13 +61,17 @@ const ProductPage = () => {
               <div className="text-base xl:text-lg  text-blue-500 mt-2 font-semibold">Free Delivery</div>
               <div className="text-base xl:text-lg text-green-700 mt-1 font-semibold">In Stock</div>
               <div className="text-base xl:text-lg mt-1 ">Quantity:
-                    <select className="p-2 bg-white border rounded-md focus:border-indigo-600 ">
+                    <select onChange={(e)=> setQuantity(e.target.value)} 
+                    className="p-2 bg-white border rounded-md focus:border-indigo-600 ">
                         <option >1</option>
                         <option >2</option>
                         <option >3</option>
                     </select>
               </div>
-              <button className="bg-yellow-600 w-full p-3 text-xs xl:text-lg font-semibold mt-5  rounded-md hover:bg-yellow-500">Add To Cart</button>
+              <Link to={"/checkout"}>
+              <button onClick={()=> dispatch(addToCart(addQuantityToProduct()))} 
+              className="bg-yellow-600 w-full p-3 text-xs xl:text-lg font-semibold mt-5  rounded-md hover:bg-yellow-500">Add To Cart</button>
+              </Link>
             </div>
           </div>
         </div>
